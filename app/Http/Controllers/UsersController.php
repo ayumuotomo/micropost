@@ -15,8 +15,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(10);
-
+         $users = User::paginate(10);
+        
         return view('users.index', [
             'users' => $users,
         ]);
@@ -49,7 +49,7 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-     public function show($id)
+   public function show($id)
     {
         $user = User::find($id);
         $microposts = $user->microposts()->orderBy('created_at', 'desc')->paginate(10);
@@ -63,7 +63,6 @@ class UsersController extends Controller
 
         return view('users.show', $data);
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -98,7 +97,7 @@ class UsersController extends Controller
         //
     }
     
-      public function followings($id)
+     public function followings($id)
     {
         $user = User::find($id);
         $followings = $user->followings()->paginate(10);
@@ -128,4 +127,3 @@ class UsersController extends Controller
         return view('users.followers', $data);
     }
 }
-
